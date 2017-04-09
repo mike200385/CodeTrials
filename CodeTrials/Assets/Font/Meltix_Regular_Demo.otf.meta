@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 4141c5df80e7a4362851913febf776e4
+timeCreated: 1488859247
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Meltix Regular Demo
+  fontNames:
+  - Meltix Regular Demo
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
