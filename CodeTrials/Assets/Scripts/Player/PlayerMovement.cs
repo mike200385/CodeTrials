@@ -139,15 +139,15 @@ public class PlayerMovement : MonoBehaviour {
 			//GlobalController.Instance.changeScene ("ArrayLevel");
 		}
 
-		if (other.gameObject.CompareTag("RisingPlatform")) {
-			transform.parent = other.transform; // stop making the platform a parent
-		}
+		//if (other.gameObject.CompareTag("RisingPlatform")) {
+			//transform.parent = other.transform; // stop making the platform a parent
+		//}
 
 	}
 
-	void OnCollisionExit2D(Collision2D other){
-		if (other.gameObject.CompareTag("RisingPlatform")) {
-			transform.parent = null; // stop making the platform a parent
-		}
-	}
+	//void OnCollisionExit2D(Collision2D other){
+	//	if (other.gameObject.CompareTag("RisingPlatform")) {
+	//		transform.parent = null; // stop making the platform a parent
+	//	}
+	//}
 }

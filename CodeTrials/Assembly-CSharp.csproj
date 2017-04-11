@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.20506</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <RootNamespace></RootNamespace>
+    <ProjectGuid>{65344DDA-B71F-DCA5-A249-E4860345ACA0}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <AssemblyName>Assembly-CSharp</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <BaseDirectory>Assets</BaseDirectory>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Temp\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_5_1;UNITY_5_5;UNITY_5;UNITY_64;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_DUCK_TYPING;ENABLE_GENERICS;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_SPRITERENDERER_FLIPPING;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_RAKNET;ENABLE_UNET;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_HUB;ENABLE_CLOUD_PROJECT_ID;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_METRICS;ENABLE_EDITOR_METRICS_CACHING;INCLUDE_DYNAMIC_GI;INCLUDE_GI;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;INCLUDE_PUBNUB;ENABLE_PLAYMODE_TESTS_RUNNER;ENABLE_SCRIPTING_NEW_CSHARP_COMPILER;UNITY_STANDALONE_OSX;UNITY_STANDALONE;ENABLE_SUBSTANCE;ENABLE_GAMECENTER;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_UNITYWEBREQUEST;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_VIDEO;ENABLE_VR;ENABLE_CLUSTERINPUT;ENABLE_WEBSOCKET_HOST;ENABLE_MONO;ENABLE_PROFILER;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_OSX;UNITY_TEAM_LICENSE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoWarn>0169</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Temp\bin\Release\</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoWarn>0169</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.XML" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="UnityEngine">
+      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor">
+      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEditor.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+     <Compile Include="Assets\BoolOpsCompletion.cs" />
+     <Compile Include="Assets\BoolOpsJIT.cs" />
+     <Compile Include="Assets\ElevatorController.cs" />
+     <Compile Include="Assets\ExitDoorLogicConditionals.cs" />
+     <Compile Include="Assets\FinalPuzzleCompletionCheck.cs" />
+     <Compile Include="Assets\FinalRoomDoor.cs" />
+     <Compile Include="Assets\IndentPuzzle.cs" />
+     <Compile Include="Assets\InsertPuzzleCompletion.cs" />
+     <Compile Include="Assets\LogicalAndCompletion.cs" />
+     <Compile Include="Assets\LogicalOrCompletion.cs" />
+     <Compile Include="Assets\ReturnToHomePortal.cs" />
+     <Compile Include="Assets\Scripts\ArrayPuzzleOne\ArrayBoxController.cs" />
+     <Compile Include="Assets\Scripts\ArrayPuzzleOne\DesktopControllerBoxArray.cs" />
+     <Compile Include="Assets\Scripts\GameLogic\ArrayTeleporter.cs" />
+     <Compile Include="Assets\Scripts\GameLogic\BarrierController.cs" />
+     <Compile Include="Assets\Scripts\GameLogic\DesktopInteraction.cs" />
+     <Compile Include="Assets\Scripts\GameLogic\ForLoopDeskTopInteraction.cs" />
+     <Compile Include="Assets\Scripts\GameLogic\HelpButtons.cs" />
+     <Compile Include="Assets\Scripts\GameLogic\IntroLevelManager.cs" />
+     <Compile Include="Assets\Scripts\GameLogic\LoopTeleporter.cs" />
+     <Compile Include="Assets\Scripts\GameLogic\MessagePanel.cs" />
+     <Compile Include="Assets\Scripts\GameLogic\MovingObject.cs" />
+     <Compile Include="Assets\Scripts\GameLogic\NestedForDeskTopInteraction.cs" />
+     <Compile Include="Assets\Scripts\GameLogic\PauseMenu.cs" />
+     <Compile Include="Assets\Scripts\GameLogic\RisingPlatformController.cs" />
+     <Compile Include="Assets\Scripts\GameLogic\TeleporterController.cs" />
+     <Compile Include="Assets\Scripts\GameLogic\WhileLoopDesktopInteraction.cs" />
+     <Compile Include="Assets\Scripts\JITScripts\JITLevel1.cs" />
+     <Compile Include="Assets\Scripts\JITScripts\JITScript.cs" />
+     <Compile Include="Assets\Scripts\JITScripts\NestedForJIT.cs" />
+     <Compile Include="Assets\Scripts\JITScripts\P2.cs" />
+     <Compile Include="Assets\Scripts\JITScripts\SingleForJIT.cs" />
+     <Compile Include="Assets\Scripts\JITScripts\WhileJIT.cs" />
+     <Compile Include="Assets\Scripts\MenuNavScripts\BackNav.cs" />
+     <Compile Include="Assets\Scripts\MenuNavScripts\BackNavLevel1.cs" />
+     <Compile Include="Assets\Scripts\MenuNavScripts\BackNavR1.cs" />
+     <Compile Include="Assets\Scripts\MenuNavScripts\GameButtons.cs" />
+     <Compile Include="Assets\Scripts\MenuNavScripts\Menu.cs" />
+     <Compile Include="Assets\Scripts\MenuNavScripts\SettingsScript.cs" />
+     <Compile Include="Assets\Scripts\PersistantData\GlobalController.cs" />
+     <Compile Include="Assets\Scripts\PlatformDrop.cs" />
+     <Compile Include="Assets\Scripts\Player\CameraFollow.cs" />
+     <Compile Include="Assets\Scripts\Player\PlayerMovement.cs" />
+     <Compile Include="Assets\Scripts\PuzzleLogic\ArithmeticPuzzle\ArithCompletionCheck.cs" />
+     <Compile Include="Assets\Scripts\PuzzleLogic\ArrayAccessPuzzle\ArrayAccessCompletion.cs" />
+     <Compile Include="Assets\Scripts\PuzzleLogic\ArrayAccessPuzzle\ArrayReactionAccess.cs" />
+     <Compile Include="Assets\Scripts\PuzzleLogic\ArrayAccessPuzzle\PlatformAccessController.cs" />
+     <Compile Include="Assets\Scripts\PuzzleLogic\ArraySumationPuzzle\ArrayReaction.cs" />
+     <Compile Include="Assets\Scripts\PuzzleLogic\ArraySumationPuzzle\ArrayReactionThree.cs" />
+     <Compile Include="Assets\Scripts\PuzzleLogic\ArraySumationPuzzle\ArrayReactionTwo.cs" />
+     <Compile Include="Assets\Scripts\PuzzleLogic\ArraySumationPuzzle\ArraySumCompletion.cs" />
+     <Compile Include="Assets\Scripts\PuzzleLogic\ArraySumationPuzzle\ArrayTileController.cs" />
+     <Compile Include="Assets\Scripts\PuzzleLogic\DataTypePuzzle\DataTypeCompletionCheck.cs" />
+     <Compile Include="Assets\Scripts\PuzzleLogic\ForLoopPuzzle\CompletionCheck.cs" />
+     <Compile Include="Assets\Scripts\PuzzleLogic\ForLoopPuzzle\Console.cs" />
+     <Compile Include="Assets\Scripts\PuzzleLogic\ForLoopPuzzle\ReactToTile.cs" />
+     <Compile Include="Assets\Scripts\PuzzleLogic\ForLoopPuzzle\ReactToTilePlus.cs" />
+     <Compile Include="Assets\Scripts\PuzzleLogic\ForLoopPuzzle\ReactToTilePlusPlus.cs" />
+     <Compile Include="Assets\Scripts\PuzzleLogic\NestedForPuzzle\CompletionCheck2.cs" />
+     <Compile Include="Assets\Scripts\PuzzleLogic\NestedForPuzzle\ReactToTileFive.cs" />
+     <Compile Include="Assets\Scripts\PuzzleLogic\NestedForPuzzle\ReactToTilePlusL2.cs" />
+     <Compile Include="Assets\Scripts\PuzzleLogic\NestedForPuzzle\ReactToTilePlusPlusL2.cs" />
+     <Compile Include="Assets\Scripts\PuzzleLogic\NestedForPuzzle\ReactToTileThree.cs" />
+     <Compile Include="Assets\Scripts\PuzzleLogic\NestedForPuzzle\ReactToTileX.cs" />
+     <Compile Include="Assets\Scripts\PuzzleLogic\NestedForPuzzle\ReactToTileY.cs" />
+     <Compile Include="Assets\Scripts\PuzzleLogic\WhilePuzzle\CompletionScriptFour.cs" />
+     <Compile Include="Assets\Scripts\PuzzleLogic\WhilePuzzle\LeftLaserInteraction.cs" />
+     <Compile Include="Assets\Scripts\PuzzleLogic\WhilePuzzle\ReactToPlusP4.cs" />
+     <Compile Include="Assets\Scripts\PuzzleLogic\WhilePuzzle\ReactToPlusPlusP4.cs" />
+     <Compile Include="Assets\Scripts\PuzzleLogic\WhilePuzzle\ReacttoXP4.cs" />
+     <Compile Include="Assets\Scripts\SwitchPuzzle\CompletionScriptThree.cs" />
+     <Compile Include="Assets\Scripts\SwitchPuzzle\DesktopController.cs" />
+     <Compile Include="Assets\Scripts\SwitchPuzzle\SwitchConsoleBehaviour.cs" />
+     <Compile Include="Assets\Scripts\SwitchPuzzle\reactToBreakOne.cs" />
+     <Compile Include="Assets\Scripts\SwitchPuzzle\reactToBreakThree.cs" />
+     <Compile Include="Assets\Scripts\SwitchPuzzle\reactToBreakTwo.cs" />
+     <Compile Include="Assets\Scripts\SwitchPuzzle\reactToInt.cs" />
+     <Compile Include="Assets\Scripts\SwitchPuzzle\reactToSwitchCondition.cs" />
+     <Compile Include="Assets\Scripts\TileReaction\TileDrag.cs" />
+     <Compile Include="Assets\arithmeticTeleporter.cs" />
+ <Reference Include="UnityEngine.UI">
+ <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.Networking">
+ <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.PlaymodeTestsRunner">
+ <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/PlaymodeTestsRunner/UnityEngine.PlaymodeTestsRunner.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.Analytics">
+ <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.HoloLens">
+ <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.VR">
+ <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnityVR/RuntimeEditor/UnityEngine.VR.dll</HintPath>
+ </Reference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  
+</Project>
