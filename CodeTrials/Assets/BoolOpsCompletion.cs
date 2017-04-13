@@ -35,6 +35,7 @@ public class BoolOpsCompletion : MonoBehaviour {
 				if (!scoreChanged) {
 					GlobalController.Instance.incScore ();
 					scoreChanged = true;
+					complete.Play ();
 				}
 			}
 		}
@@ -48,6 +49,7 @@ public class BoolOpsCompletion : MonoBehaviour {
 				if (!scoreChanged) {
 					GlobalController.Instance.incScore ();
 					scoreChanged = true;
+					complete.Play ();
 				}
 			}	
 		}

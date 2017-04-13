@@ -11,6 +11,7 @@ public class GlobalController : MonoBehaviour {
 	public bool arrayPortalActive = false;
 	public bool loopPortalActive = false;
 
+
 	//Camera variables
 	public Camera mainCam;
 	public Camera secondCam;
@@ -103,6 +104,7 @@ public class GlobalController : MonoBehaviour {
 	public void changeSecondCamera(Camera newCam){
 		secondCam = newCam;
 	}
+		
 
 	public void incScore(){
 		score += scrAdditive;
