@@ -18,6 +18,8 @@ public class LogicalAndCompletion : MonoBehaviour {
 	public GameObject rightPylonRaised;
 	public GameObject doorOne;
 
+	public AudioSource solved, raisePillarSound, raiseDoor;
+
 	//GameObject spawn in locations
 	private float rightX = 126f;
 	private float leftX = 112f;
@@ -58,16 +60,21 @@ public class LogicalAndCompletion : MonoBehaviour {
 		if (andSuccess.success && replacementAnd.giveName == "ReplacementAND") {
 			if (leftPylonFlag && rightPylonFlag && !doorOpened && slotOneSuccess.success && slotTwoSuccess.success) {
 				openDoor ();
-				GlobalController.Instance.logicalAndComplete = true;
+
+				puzzleFinished = true;
+				solved.Play ();
 				if (!camToggled) {
 					GlobalController.Instance.toggleCamera ();
 					camToggled = true;
-					//add to score
-					if (!scoreChanged) {
-						GlobalController.Instance.incScore ();
-						scoreChanged = true;
-					}
 				}
+				//add to score
+				if (!scoreChanged) {
+					raiseDoor.Play ();
+					raiseDoor.loop = false;
+					GlobalController.Instance.incScore ();
+					scoreChanged = true;
+				}
+
 			}
 		}
 
@@ -94,6 +101,8 @@ public class LogicalAndCompletion : MonoBehaviour {
 		if (!leftPylonFlag) {
 			leftPylonRaised.transform.position = new Vector3 (leftX, inSceneY, 0);
 			leftPylonFlag = true;
+			raisePillarSound.Play ();
+			raisePillarSound.loop = false;
 		}	
 	}
 
@@ -101,6 +110,8 @@ public class LogicalAndCompletion : MonoBehaviour {
 		if (!rightPylonFlag) {
 			rightPylonRaised.transform.position = new Vector3 (rightX, inSceneY, 0);
 			rightPylonFlag = true;
+			raisePillarSound.Play ();
+			raisePillarSound.loop = false;
 		}	
 	}
 
@@ -111,6 +122,8 @@ public class LogicalAndCompletion : MonoBehaviour {
 
 	void closeDoor(){
 		doorOne.transform.position = doorOneStartingPosition;
+		raiseDoor.Play ();
+		raiseDoor.loop = false;
 	}
 
 	public void resetPylon (){

@@ -121,11 +121,11 @@ public class ArithCompletionCheck : MonoBehaviour {
 	}
 
 	public bool checkInputName(){
-		if (checkSlots [0].GetComponent<ArrayReaction>().giveName == "ReplacementMOD" &&
+		if (checkSlots [0].GetComponent<ArrayReaction>().giveName == "ReplacementParenO" &&
 			checkSlots [1].GetComponent<ArrayReaction>().giveName == "Replacement-" &&
-			checkSlots [2].GetComponent<ArrayReaction>().giveName == "ReplacementParenO" &&
+			checkSlots [2].GetComponent<ArrayReaction>().giveName == "ReplacementParenC" &&
 			checkSlots [3].GetComponent<ArrayReaction>().giveName == "Replacement-" &&
-			checkSlots [4].GetComponent<ArrayReaction>().giveName == "ReplacementParenC") 
+			checkSlots [4].GetComponent<ArrayReaction>().giveName == "ReplacementMOD") 
 		{
 			return true;
 		}

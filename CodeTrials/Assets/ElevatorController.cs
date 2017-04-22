@@ -13,12 +13,15 @@ public class ElevatorController : MonoBehaviour {
 	private float startTime;
 	private float elapsedTime;
 
-	private float journeyLengthUp, journeyLengthDown,journeyToOriginFromUp;
+	private float journeyLengthUp, journeyLengthDown;
+
+	public AudioSource elevator;
 
 	//Bools that are necessary to determine where the player is
 	public bool inArea = false; // is the player on the elevator
 	public bool up = false; //Is the player on the second floor
 	public bool down = false; //Is the player on the sub floor
+	public bool soundFlag; //sound plays once
 	public BoolOpsCompletion elevatorFlag, goingUp; //can the player use the elevator and in which direction
 
 	//Need to know which puzzle the player does first to position the cameras in correct depth index.
@@ -29,7 +32,7 @@ public class ElevatorController : MonoBehaviour {
 		resetTime (); //call the resetTime function to have startTime begin at 0
 		journeyLengthUp = Vector3.Distance(startMarker.position, endMarkerUp.position);
 		journeyLengthDown = Vector3.Distance(startMarker.position, endMarkerDown.position);
-		journeyToOriginFromUp = Vector3.Distance (midMarker.position, endMarkerUp.position);
+		soundFlag = true;
 	}
 
 	//Call this function whenever the player gets on the elevator to ensure the elevator movement speed is
@@ -58,12 +61,20 @@ public class ElevatorController : MonoBehaviour {
 				transform.position = Vector3.Lerp (startMarker.position, endMarkerUp.position, fracJourney);
 				logicalAndCamera.depth = -2;
 				logicalOrCamera.depth = -3;
+				if (soundFlag) {
+					playSound ();
+					soundFlag = false;
+				}
 			} else if (!goingUp.goingUp && !up) {
 				float distCovered = elapsedTime * downSpeed;
 				float fracJourney = distCovered / journeyLengthDown;
 				transform.position = Vector3.Lerp (startMarker.position, endMarkerDown.position, fracJourney);
 				logicalOrCamera.depth = -2;
 				logicalAndCamera.depth = -3;
+				if (soundFlag) {
+					playSound ();
+					soundFlag = false;
+				}
 			}
 		} 
 
@@ -80,10 +91,18 @@ public class ElevatorController : MonoBehaviour {
 			float distCovered = elapsedTime * downSpeed;
 			float fracJourney = distCovered / journeyLengthUp;
 			transform.position = Vector3.Lerp (transform.position, midMarker.position, fracJourney/2);
+			if (soundFlag) {
+				playSound ();
+				soundFlag = false;
+			}
 		} else if (inArea && down) { //the player has gone back to elevator from sub floor
 			float distCovered = elapsedTime * upSpeed;
 			float fracJourney = distCovered / journeyLengthDown;
 			transform.position = Vector3.Lerp (transform.position, midMarker.position, fracJourney/2);
+			if (soundFlag) {
+				playSound ();
+				soundFlag = false;
+			}
 		}
 	}
 
@@ -99,6 +118,21 @@ public class ElevatorController : MonoBehaviour {
 	void OnTriggerExit2D(Collider2D other){
 		if (other.tag == "Player") {
 			inArea = false;
+			soundFlag = true;
+			stopAudio ();
+
 		}
 	}
+
+	void playSound(){
+		elevator.Play ();
+		elevator.loop = true;
+		elevator.volume = .50f;
+	}
+
+	void stopAudio(){
+		elevator.Stop ();
+	}
+
+
 }

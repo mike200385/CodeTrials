@@ -23,6 +23,7 @@ public class PlayerMovement : MonoBehaviour {
 	public Camera cam;
 
 	public GlobalController gameManager;
+	public RespawnController respawnManager;
 
 //Animation States 
 	const int STATE_IDLE = 0;
@@ -37,10 +38,9 @@ public class PlayerMovement : MonoBehaviour {
 		myRigidBody = GetComponent<Rigidbody2D> (); // rigid body for physics
 		anim = GetComponent<Animator> ();
 	}
-
+		
 	// Update is called once per frame
 	void Update () {
-
 		isGrounded = Physics2D.OverlapCircle (groundCheck.position,groundCheckRadius,whatIsGround);
 		myRigidBody.constraints = RigidbodyConstraints2D.FreezeRotation;
 		//Horizontal input is either 0(no input), 1(going right), or -1(going left)
@@ -76,9 +76,7 @@ public class PlayerMovement : MonoBehaviour {
 		}
 		// if on the ground, set falling and jumping to false
 		else if(isGrounded){ 
-			
 			isJumping = false;
-
 		}
 		//allows player to zoom out the camera to see larger section of the map.
 		if (Input.GetKeyDown("q")) {
@@ -126,7 +124,7 @@ public class PlayerMovement : MonoBehaviour {
 
 	//Changes Camera.cam ortho size on toggle mapped to "Q" key.
 	void zoomOut(){
-		cam.orthographicSize = 10;
+		cam.orthographicSize = 14.0f;
 	}
 	void zoomIn(){
 		cam.orthographicSize = 7;
@@ -139,15 +137,24 @@ public class PlayerMovement : MonoBehaviour {
 			//GlobalController.Instance.changeScene ("ArrayLevel");
 		}
 
-		//if (other.gameObject.CompareTag("RisingPlatform")) {
-			//transform.parent = other.transform; // stop making the platform a parent
-		//}
+		if (other.gameObject.CompareTag("RisingPlatform")) {
+			transform.parent = other.transform; // stop making the platform a parent
+		}
+		if (other.gameObject.CompareTag("EscapePod")) {
+			transform.parent = other.transform; // stop making the platform a parent
+			zoomOut();
+		}
 
 	}
 
-	//void OnCollisionExit2D(Collision2D other){
-	//	if (other.gameObject.CompareTag("RisingPlatform")) {
-	//		transform.parent = null; // stop making the platform a parent
-	//	}
-	//}
+	void OnCollisionExit2D(Collision2D other){
+		if (other.gameObject.CompareTag("RisingPlatform")) {
+			transform.parent = null; // stop making the platform a parent
+		}
+		if (other.gameObject.CompareTag("EscapePod")) {
+			transform.parent = null; // stop making the platform a parent
+			//cam.orthographicSize = 8.53f; //specific to final level
+		}
+	}
+		
 }

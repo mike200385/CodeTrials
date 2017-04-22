@@ -8,6 +8,7 @@ public class JITScript : MonoBehaviour {
 
 	public Text wordDisplay;
 	public string jitName;
+	public AudioSource getScientistChime, enterBriefDialogue;
 
 	// Use this for initialization
 	void Start () {
@@ -25,11 +26,12 @@ public class JITScript : MonoBehaviour {
 
 			case "ArrayBriefing":
 				wordDisplay.text = "There are more scientists to be saved using Arrays! \n" +
-					"An array is a list of elements of the same type. \n " +
-					"Arrays count their elements starting at 0! Remember that! " +
-					"Arrays can be accessed like this: array[num] Where num is a number.";
+				"An array is a list of elements of the same type. \n " +
+				"Arrays count their elements starting at 0! Remember that! " +
+				"Arrays can be accessed like this: array[num] Where num is a number.";
 				Time.timeScale = 0.0f;
 				Destroy (this.gameObject);
+				playDialogue ();
 				break;
 			case "ArrayChallenge1":
 				wordDisplay.text = "It seems some of the holo-platforms are disabled, which means you can't get across!" +
@@ -37,6 +39,7 @@ public class JITScript : MonoBehaviour {
 					" Watch out for weird array indexes";
 				Time.timeScale = 0.0f;
 				Destroy (this.gameObject);
+				playDialogue ();
 				break;
 			case "ArrayChallenge2":
 				wordDisplay.text = "The counter-weight platform is down, but you need to get across. " +
@@ -53,11 +56,13 @@ public class JITScript : MonoBehaviour {
 				"Ints hold whole numbers, doubles hold decimal values, chars hold single characters, and so on.";
 				Time.timeScale = 0.0f;
 				Destroy (this.gameObject);
+				playDialogue ();
 				break;
 			case "DataTypeChallenge":
 				wordDisplay.text = "The code is incomplete! To get past this first door, place the correct datatypes with their variables. You can do it!";
 				Time.timeScale = 0.0f;
 				Destroy (this.gameObject);
+				playDialogue ();
 				break;
 			case "ArithBriefing":
 				wordDisplay.text = "There are 5 main operators that are used: +, -, *, /, and %. \n" +
@@ -65,25 +70,22 @@ public class JITScript : MonoBehaviour {
 					"Also, remember that the precedence of the operators is (*,/,%), followed by (+,-).";
 				Time.timeScale = 0.0f;
 				Destroy (this.gameObject);
+				playDialogue ();
 				break;
 			case "ArithChallenge":
-				wordDisplay.text = "The code is incomplete! To open the door, set the equation to equal 30, don't give up!";
+				wordDisplay.text = "The code is incomplete! To open the door, set the equation to equal 2, don't give up!";
 				Time.timeScale = 0.0f;
 				Destroy (this.gameObject);
+				playDialogue ();
 				break;
-			case "Num15":
-				wordDisplay.text = "You've found a crumpled up piece of paper." +
-					"\n\n" +
-					"It has the number 15 written on it, that might come in handy.";
-				Time.timeScale = 0.0f;
-				Destroy (this.gameObject);
-				break;
+			
 			//First generic scientist response
 			case "Scientist1":
 				wordDisplay.text = "Thanks for saving me! I'll help find a way to escape from the ship!";
 				Time.timeScale = 0.0f;
 				Destroy (this.gameObject);
 				GlobalController.Instance.incScientist ();
+				playScientistChime ();
 				break;
 			//Second generic scientis response
 			case "Scientist2":
@@ -91,6 +93,7 @@ public class JITScript : MonoBehaviour {
 				Time.timeScale = 0.0f;
 				Destroy (this.gameObject);
 				GlobalController.Instance.incScientist ();
+				playScientistChime ();
 				break;
 			case "MidLevelScientistArray":
 				//solves camera problem in array level
@@ -99,6 +102,7 @@ public class JITScript : MonoBehaviour {
 				Destroy (this.gameObject);
 				GameObject sci = GameObject.Find ("MidScientist");
 				GlobalController.Instance.incScientist ();
+				playScientistChime ();
 				Destroy (sci,7.0f);
 				break;
 			
@@ -112,6 +116,7 @@ public class JITScript : MonoBehaviour {
 					"must be true. \n '||' - logical or operator. Only one of the conditions need be true.";
 				Time.timeScale = 0.0f;
 				Destroy (this.gameObject);
+				playDialogue ();
 				break;
 
 			case "BoolOpsBrief":
@@ -119,6 +124,7 @@ public class JITScript : MonoBehaviour {
 				"and can take you up or down depending on your decision.";
 				Time.timeScale = 0.0f;
 				Destroy (this.gameObject);
+				playDialogue ();
 				break;
 
 			case "LogicalAndBrief":
@@ -127,6 +133,7 @@ public class JITScript : MonoBehaviour {
 					"the scientist. Remember the key distinction between AND and OR.";
 				Time.timeScale = 0.0f;
 				Destroy (this.gameObject);
+				playDialogue ();
 				break;
 
 			case "LogicalOrBrief":
@@ -135,24 +142,30 @@ public class JITScript : MonoBehaviour {
 					"the scientist. Remember the key distinction between AND and OR.";
 				Time.timeScale = 0.0f;
 				Destroy (this.gameObject);
+				playDialogue ();
 				break;
 			case "LogicalAndScientistJIT":
 				wordDisplay.text = "Thanks for saving me! Let me help you get the ship under control!";
 				Time.timeScale = 0.0f;
 				Destroy (this.gameObject);
 				GlobalController.Instance.incScientist ();
+				GlobalController.Instance.logicalAndComplete = true;
+				playScientistChime ();
 				break;
 			case "LogicalOrScientistJIT":
 				wordDisplay.text = "Thanks for saving me! Let me help you get the ship under control!";
 				Time.timeScale = 0.0f;
 				Destroy (this.gameObject);
 				GlobalController.Instance.incScientist ();
+				GlobalController.Instance.logicalOrComplete = true;
+				playScientistChime ();
 				break;
 			case "ExitDoorScientistJIT":
 				wordDisplay.text = "Good work! Hurry through the portal, there are more like me to be helped!";
 				Time.timeScale = 0.0f;
 				Destroy (this.gameObject);
 				GlobalController.Instance.incScientist ();
+				playScientistChime ();
 				break;
 
 		//LOOP LEVEL JITS
@@ -164,6 +177,7 @@ public class JITScript : MonoBehaviour {
 					"a nested for loop and a simple while loop.";
 				Time.timeScale = 0.0f;
 				Destroy (this.gameObject);
+				playDialogue ();
 				break;
 
 			case "SingleForBrief":
@@ -172,6 +186,7 @@ public class JITScript : MonoBehaviour {
 					" must match the displayed number on the door. ";
 				Time.timeScale = 0.0f;
 				Destroy (this.gameObject);
+				playDialogue ();
 				break;
 
 			case "NestedForBrief":
@@ -180,6 +195,7 @@ public class JITScript : MonoBehaviour {
 					"coordinate which is the passcode for exit.";
 				Time.timeScale = 0.0f;
 				Destroy (this.gameObject);
+				playDialogue ();
 				break;
 
 			case "WhileBrief":
@@ -188,6 +204,7 @@ public class JITScript : MonoBehaviour {
 					"until the proper condition occurs. Use the desktop to turn off the laser.";
 				Time.timeScale = 0.0f;
 				Destroy (this.gameObject);
+				playDialogue ();
 				break;
 			//Specifically for managing cams in Arrya level since there are many cameras
 			case "ArrayCams":
@@ -204,6 +221,16 @@ public class JITScript : MonoBehaviour {
 				"This is the final push! Time to finsh what you started!";
 				Time.timeScale = 0.0f;
 				Destroy (this.gameObject);
+				playDialogue ();
+				break;
+			case "FinalCompletion":
+				wordDisplay.text = "You've made it! Thank you so much for rescuing us all!\n" +
+					"The malware has spread throughout the ship and we can't get it back!\n" +
+					"We're going to eject our escape pod and head back to base. We wouldn't be here without you.\n\n" +
+					"Thank you a million times!";
+				Time.timeScale = 0.0f;
+				Destroy (this.gameObject);
+				playDialogue ();
 				break;
 
 
@@ -212,11 +239,25 @@ public class JITScript : MonoBehaviour {
 				this.gameObject.SetActive(false);
 				//Destroy(this.gameObject);
 				break;
-			
+			case "EscapePod": // launches the escape pod
+				this.gameObject.SetActive (false);
+//				Destroy(this.gameObject);
+				playScientistChime(); // actually plays escape pod launch sound
+				playDialogue(); // actually plays escape pod music
+				break;
 			}
 		}
 	}
 
+	void playScientistChime(){
+		getScientistChime.Play ();
+		getScientistChime.loop = false;
+	}
 
+	void playDialogue(){
+		enterBriefDialogue.Play ();
+		getScientistChime.loop = false;
+	}
+		
 
 }

@@ -8,6 +8,7 @@ public class ReturnToHomePortal : MonoBehaviour {
 
 	//public Text prompt; //text to display
 	private bool inArea = false;
+	public Text prompt; //text to display
 
 	// Use this for initialization
 	void Start () {
@@ -28,6 +29,7 @@ public class ReturnToHomePortal : MonoBehaviour {
 			//show interact text
 			//prompt.enabled = true;
 			inArea = true;
+			prompt.enabled = true;
 
 		}
 	}
@@ -35,5 +37,6 @@ public class ReturnToHomePortal : MonoBehaviour {
 	void OnTriggerExit2D(Collider2D other){
 		//prompt.enabled = false;
 		inArea = false;
+		prompt.enabled = false;
 	}
 }

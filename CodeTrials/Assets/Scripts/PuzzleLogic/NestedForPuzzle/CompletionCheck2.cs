@@ -4,8 +4,8 @@ using UnityEngine.SceneManagement;
 
 public class CompletionCheck2 : MonoBehaviour {
 	
-	public ArrayReaction threeSuccess, fiveSuccess, xSuccess, ySuccess, plusSuccess, plusPlusSuccess;
-	public ArrayReaction replacementThree, replacementFive, replacementX, replacementY, replacementPlus, replacementPlusPlus;
+	public ArrayReaction threeSuccess, fiveSuccess, plusSuccess, plusPlusSuccess;
+	public ArrayReaction replacementThree, replacementFive, replacementPlus, replacementPlusPlus;
 
 	public bool puzzleFinished, camToggled, doorOpened, scoreChanged;
 
@@ -14,6 +14,8 @@ public class CompletionCheck2 : MonoBehaviour {
 
 	public GameObject[] arrayTiles; // the tiles that will be dragged
 	public GameObject[] replacementTiles; //The replacements when tiles dragged into the slots
+
+	public AudioSource solved, raiseDoor;
 
 
 	// Use this for initialization
@@ -24,7 +26,7 @@ public class CompletionCheck2 : MonoBehaviour {
 		doorOpened = false;
 		scoreChanged = false;
 		doorTwoStartingPosition = doorTwo.transform.position; //The starting position of the door in the scene
-		doorTwoOpenPosition = new Vector3 (doorTwo.transform.position.x, doorTwo.transform.position.y + 5.0f, 
+		doorTwoOpenPosition = new Vector3 (doorTwo.transform.position.x, doorTwo.transform.position.y + 100.0f, 
 			doorTwo.transform.position.z);
 
 	}
@@ -37,9 +39,7 @@ public class CompletionCheck2 : MonoBehaviour {
 		if (threeSuccess.success && replacementThree.giveName == "Replacement3" &&
 			plusSuccess.success && replacementPlus.giveName == "Replacement+" &&
 			plusPlusSuccess.success && replacementPlusPlus.giveName == "Replacement+" &&
-			fiveSuccess.success && replacementFive.giveName == "Replacement5" && 
-			xSuccess.success && replacementX.giveName == "ReplacementX" &&
-			ySuccess.success && replacementY.giveName == "ReplacementY"){
+			fiveSuccess.success && replacementFive.giveName == "Replacement5"){
 			if (!camToggled) {
 				GlobalController.Instance.toggleCamera ();
 				camToggled = true;
@@ -51,6 +51,7 @@ public class CompletionCheck2 : MonoBehaviour {
 			GlobalController.Instance.nestedForLoopComplete = true;
 			if (!scoreChanged) {
 				GlobalController.Instance.incScore ();
+				solved.Play ();
 				scoreChanged = true;
 			}
 		}
@@ -73,8 +74,6 @@ public class CompletionCheck2 : MonoBehaviour {
 	public void resetCheckValues(){
 		threeSuccess.resetSuccessBool ();
 		fiveSuccess.resetSuccessBool ();
-		xSuccess.resetSuccessBool ();
-		ySuccess.resetSuccessBool ();
 		plusSuccess.resetSuccessBool ();
 		plusPlusSuccess.resetSuccessBool ();
 	}
@@ -82,10 +81,14 @@ public class CompletionCheck2 : MonoBehaviour {
 	void openDoor(){
 		doorTwo.transform.position = doorTwoOpenPosition;
 		doorOpened = true;
+		raiseDoor.Play ();
+		raiseDoor.loop = false;
 	}
 
 	void closeDoor(){
 		doorTwo.transform.position = doorTwoStartingPosition;
+		raiseDoor.Play ();
+		raiseDoor.loop = false;
 	}
 
 

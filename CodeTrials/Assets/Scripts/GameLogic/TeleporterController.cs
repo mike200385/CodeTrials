@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class TeleporterController : MonoBehaviour {
 
 	public bool inArea;
+	public Text prompt; //text to display
 
 	// Use this for initialization
 	void Start () {
@@ -24,12 +25,14 @@ public class TeleporterController : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D other){
 		if (other.gameObject.tag == "Player") {
 			inArea = true;
+			prompt.enabled = true;
 		}
 	}
 
 	void OnTriggerExit2D(Collider2D other){
 		if (other.gameObject.tag == "Player") {
 			inArea = false;
+			prompt.enabled = false;
 		}
 	}
 		

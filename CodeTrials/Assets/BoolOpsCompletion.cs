@@ -5,8 +5,10 @@ using UnityEngine;
 public class BoolOpsCompletion : MonoBehaviour {
 	
 	public ArrayReaction upSuccess, notUpSuccess;
-	public ArrayReaction replacementUp, replacementNotUp;
+	public ArrayReaction replacementTrue, replacementFalse, replacementNotUp;
 	public ElevatorController floorLocation;
+
+	public AudioSource solved;
 
 
 	public bool puzzleFinished, camToggled, useElevator, goingUp, scoreChanged;
@@ -25,31 +27,41 @@ public class BoolOpsCompletion : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (upSuccess.success && replacementUp.giveName == "ReplacementUp") {
+		if (upSuccess.success && replacementTrue.giveName == "ReplacementTrue" &&
+			notUpSuccess.success && replacementNotUp.giveName == "ReplacementNotUp") {
 			if (!GlobalController.Instance.boolOpsComplete && !puzzleFinished) {
 				GlobalController.Instance.boolOpsComplete = true;
 				useElevator = true;
 				goingUp = true;
 				puzzleFinished = true;
+				solved.Play ();
+				if (!camToggled) {
+					GlobalController.Instance.toggleCamera ();
+					camToggled = true;
+				}
 				//add to score
 				if (!scoreChanged) {
 					GlobalController.Instance.incScore ();
 					scoreChanged = true;
-					complete.Play ();
 				}
 			}
 		}
-		if (notUpSuccess.success && replacementNotUp.giveName == "ReplacementNotUp") {
+		if (upSuccess.success && replacementFalse.giveName == "ReplacementFalse" &&
+			notUpSuccess.success && replacementNotUp.giveName == "ReplacementNotUp") {
 			if (!GlobalController.Instance.boolOpsComplete && !puzzleFinished) {
 				GlobalController.Instance.boolOpsComplete = true;
 				useElevator = true;
 				goingUp = false;
 				puzzleFinished = true;
+				solved.Play ();
+				if (!camToggled) {
+					GlobalController.Instance.toggleCamera ();
+					camToggled = true;
+				}
 				//add to score
 				if (!scoreChanged) {
 					GlobalController.Instance.incScore ();
 					scoreChanged = true;
-					complete.Play ();
 				}
 			}	
 		}

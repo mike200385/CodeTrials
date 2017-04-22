@@ -199,6 +199,22 @@ public class HelpButtons : MonoBehaviour {
 				"in the 'for' statement.";
 			break;
 
+		//SWITCH PUZZLE
+		case "HelpButton1_SWITCH":
+			helpText.text = "The switch statement is a series\n" +
+				"of conditions that can be\n" +
+				"selected by their case number.\n" +
+				"In this puzzle, drag the desired tile\n" +
+				"number and assign\n" +
+				"to door number";
+			break;
+		case "HelpButton2_SWITCH":
+			helpText.text = "A switch statement needs\n" +
+				"a condition to switch on,\n" +
+				"that condition here is\n" +
+				"doorNumber";
+			break;
+
 		}
 	}
 

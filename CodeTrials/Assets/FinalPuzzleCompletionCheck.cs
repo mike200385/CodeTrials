@@ -6,6 +6,7 @@ public class FinalPuzzleCompletionCheck : MonoBehaviour {
 
 	// LEVEL MANAGER FOR THE ARRAY LEVEL
 
+
 	public GameObject[] checkSlots; //manually set in inspector
 	public GameObject[] barriers;//manually set in inspector
 	public GameObject[] arrayTiles; // the tiles that will be dragged
@@ -82,8 +83,8 @@ public class FinalPuzzleCompletionCheck : MonoBehaviour {
 	public void resetBarriers(){
 		//place back in original pos
 		foreach (GameObject barr in barriers) {
-			barr.GetComponent<BarrierController> ().resetPosition ();
-			barr.GetComponent<BarrierController> ().triggerCollider.gameObject.SetActive (true);
+			barr.GetComponent<OneWayMovingObjectTrigger> ().resetPosition ();
+			barr.GetComponent<OneWayMovingObjectTrigger> ().triggerCollider.gameObject.SetActive (true);
 		}
 	}
 	//reset slots to empty
@@ -133,7 +134,7 @@ public class FinalPuzzleCompletionCheck : MonoBehaviour {
 		}
 		return false;
 	}
-
+		
 
 }
 

@@ -6,6 +6,7 @@ public class ArrayReaction : MonoBehaviour {
 
 	public bool success;
 	public string giveName;
+	public AudioSource correct;
 
 	// Use this for initialization
 	void Start () {
@@ -27,8 +28,8 @@ public class ArrayReaction : MonoBehaviour {
 			other.gameObject.SetActive (false);// set the tile to inactive
 			other.GetComponent<ArrayTileController> ().isUsed = true;// set flag to tell if this was used
 			giveName = other.GetComponent<ArrayTileController> ().tileName;
-			print (giveName);
 			success = true;
+			correct.Play ();
 		}
 
 	}

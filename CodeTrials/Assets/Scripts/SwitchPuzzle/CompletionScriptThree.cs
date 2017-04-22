@@ -4,16 +4,17 @@ using UnityEngine.SceneManagement;
 
 public class CompletionScriptThree : MonoBehaviour {
 
-	public ArrayReaction oneSuccess, doorNumberSuccess;
-	public ArrayReaction replacementOne, replacementDoorNumber;
+	public ArrayReaction oneSuccess, twoSuccess, threeSuccess, fourSuccess, fiveSuccess,
+						 doorNumberSuccess;
+	public ArrayReaction replacementOne, replacementTwo, replacementThree, replacementFour, replacementFive,
+						 replacementDoorNumber;
 
-	public bool puzzleFinished, camToggled, scoreChanged, doorOpened;
-
-	private Vector3 doorOneStartingPosition, doorOneOpenPosition;
+	public bool puzzleFinished, camToggled, scoreChanged;
+	public AudioSource solved, raiseDoor;
 
 	public GameObject[] arrayTiles; // the tiles that will be dragged
 	public GameObject[] replacementTiles; //The replacements when tiles dragged into the slots
-	public GameObject arithmeticPortal, doorOne;
+	public GameObject arithmeticPortal, conditionalPortal, arrayPortal, loopPortal, finalPortal;//The Portals
 	public GameObject arithLevTag, condLevTag, arrayLevTag, loopLevTag;
 
 
@@ -22,11 +23,16 @@ public class CompletionScriptThree : MonoBehaviour {
 		arrayTiles = GameObject.FindGameObjectsWithTag ("ArrayTile");
 		puzzleFinished = false;
 		camToggled = false;
+		scoreChanged = false;
 		arithmeticPortal.SetActive (false);
+		conditionalPortal.SetActive (false);
+		loopPortal.SetActive (false);
+		arrayPortal.SetActive (false);
+		finalPortal.SetActive (false);
 		arithLevTag.SetActive (false);
-		doorOneStartingPosition = doorOne.transform.position; //The starting position of the door in the scene
-		doorOneOpenPosition = new Vector3 (doorOne.transform.position.x, doorOne.transform.position.y + 10.0f, 
-			doorOne.transform.position.z);
+		condLevTag.SetActive (false);
+		arrayLevTag.SetActive (false);
+		loopLevTag.SetActive (false);
 	}
 	
 	// Update is called once per frame
@@ -38,16 +44,74 @@ public class CompletionScriptThree : MonoBehaviour {
 			doorNumberSuccess.success && doorNumberSuccess.giveName == "ReplacementdoorNumber" &&
 			!puzzleFinished){
 				//instantiate the arimetic portal.
-				openDoor();
 				arithmeticPortal.SetActive(true);
 				arithLevTag.SetActive (true);
+				puzzleFinished = true;
 				if (!camToggled) {
 					GlobalController.Instance.toggleCamera ();
 					camToggled = true;
+					solved.Play ();
 				}
-				puzzleFinished = true;
 		}
-			
+
+		//Open Portal to Conditionals
+		if(twoSuccess.success && twoSuccess.giveName == "Replacement2" &&
+			doorNumberSuccess.success && doorNumberSuccess.giveName == "ReplacementdoorNumber" &&
+			!puzzleFinished){
+				//Instantiate the Conditional Ops portal
+				conditionalPortal.SetActive (true);
+				condLevTag.SetActive (true);
+				puzzleFinished = true;
+				if (!camToggled) {
+					GlobalController.Instance.toggleCamera ();
+					camToggled = true;
+					solved.Play ();
+				}
+		}
+
+		//Open Portal to Array
+		if(threeSuccess.success && threeSuccess.giveName == "Replacement3" &&
+			doorNumberSuccess.success && doorNumberSuccess.giveName == "ReplacementdoorNumber" &&
+			!puzzleFinished){
+				//instantiate the array portal
+				arrayPortal.SetActive (true);
+				arrayLevTag.SetActive (true);
+				puzzleFinished = true;
+				if (!camToggled) {
+					GlobalController.Instance.toggleCamera ();
+					camToggled = true;
+					solved.Play ();
+				}	
+		}
+
+		//Open Portal to Loop
+		if(fourSuccess.success && fourSuccess.giveName == "Replacement4" &&
+			doorNumberSuccess.success && doorNumberSuccess.giveName == "ReplacementdoorNumber" &&
+			!puzzleFinished){
+				//instantiate the loop portal
+				loopPortal.SetActive (true);
+				loopLevTag.SetActive (true);
+				puzzleFinished = true;
+				if (!camToggled) {
+					GlobalController.Instance.toggleCamera ();
+					camToggled = true;
+					solved.Play ();
+				}
+		}
+
+		//Open Portal to Final
+		if(fiveSuccess.success && fiveSuccess.giveName == "Replacement5" &&
+			doorNumberSuccess.success && doorNumberSuccess.giveName == "ReplacementdoorNumber" &&
+			!puzzleFinished){
+				//instantiate the final portal
+				finalPortal.SetActive (true);
+				puzzleFinished = true;
+				if (!camToggled) {
+					GlobalController.Instance.toggleCamera ();
+					camToggled = true;
+					solved.Play ();
+				}
+		}
 
 		//The Reset Logic
 		if (Input.GetKeyDown (KeyCode.R) && GlobalController.Instance.camName == "SwitchCamera") {
@@ -55,30 +119,28 @@ public class CompletionScriptThree : MonoBehaviour {
 			resetSlots ();
 			resetActive ();
 			resetCheckValues ();
-			closeDoor ();
 			camToggled = false;
 			puzzleFinished = false;
 			arithmeticPortal.SetActive (false);
+			conditionalPortal.SetActive (false);
+			loopPortal.SetActive (false);
+			arrayPortal.SetActive (false);
+			finalPortal.SetActive (false);
 			arithLevTag.SetActive (false);
+			condLevTag.SetActive (false);
+			arrayLevTag.SetActive (false);
+			loopLevTag.SetActive (false);
 		}
 			
-	}
-
-
-
-	void openDoor(){
-		doorOne.transform.position = doorOneOpenPosition;
-		doorOpened = true;
-	}
-
-	void closeDoor(){
-		doorOne.transform.position = doorOneStartingPosition;
-		doorOpened = false;
 	}
 		
 
 	public void resetCheckValues(){
 		oneSuccess.resetSuccessBool ();
+		twoSuccess.resetSuccessBool ();
+		threeSuccess.resetSuccessBool ();
+		fourSuccess.resetSuccessBool ();
+		fiveSuccess.resetSuccessBool ();
 		doorNumberSuccess.resetSuccessBool ();
 	}
 

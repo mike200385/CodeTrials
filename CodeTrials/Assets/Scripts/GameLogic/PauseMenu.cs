@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public class PauseMenu : MonoBehaviour {
 
@@ -21,8 +23,8 @@ public class PauseMenu : MonoBehaviour {
 		if (paused) {
 			GUI.BeginGroup (new Rect (((Screen.width / 2) - (groupWidth / 2)), ((Screen.height / 2) - (groupHeight / 2)), groupWidth, groupHeight));
 
-			if (GUI.Button (new Rect (0, 0, buttonWidth, buttonHeight), "Main Menu")) {
-				SceneManager.LoadScene ("mainmenu");
+			if (GUI.Button (new Rect (0, 0, buttonWidth, buttonHeight), "Settings")) {
+				GlobalController.Instance.changeScene ("Settings");
 			}
 
 			if (GUI.Button (new Rect (0, 60, buttonWidth, buttonHeight), "Resume Game")) {
@@ -51,4 +53,5 @@ public class PauseMenu : MonoBehaviour {
 			return true;
 		}
 	}
+		
 }

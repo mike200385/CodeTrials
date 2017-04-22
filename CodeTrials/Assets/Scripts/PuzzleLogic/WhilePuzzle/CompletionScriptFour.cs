@@ -12,6 +12,7 @@ public class CompletionScriptFour : MonoBehaviour{
 	public bool puzzleFinished, camToggled, laserOff, scoreChanged;
 
 	public GameObject laser;
+	public AudioSource solved;
 	private Vector3 laserStartingPosition, laserRemovedPosition;
 
 	public GameObject[] arrayTiles; // the tiles that will be dragged
@@ -48,6 +49,7 @@ public class CompletionScriptFour : MonoBehaviour{
 			puzzleFinished = true;
 			GlobalController.Instance.whileLoopComplete = true;
 			if (!scoreChanged) {
+				solved.Play ();
 				GlobalController.Instance.incScore ();
 				scoreChanged = true;
 			}

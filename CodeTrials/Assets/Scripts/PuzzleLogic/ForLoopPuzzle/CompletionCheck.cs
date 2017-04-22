@@ -9,6 +9,8 @@ public class CompletionCheck : MonoBehaviour {
 	public ArrayReaction replacementPlus;
 	public ArrayReaction replacementPlusPlus;
 
+	public AudioSource solved, raiseDoor;
+
 	public bool puzzleFinished, camToggled, doorOpened, scoreChanged;
 
 	public GameObject doorOne;
@@ -49,6 +51,7 @@ public class CompletionCheck : MonoBehaviour {
 			GlobalController.Instance.singleForLoopComplete = true;
 			if (!scoreChanged) {
 				GlobalController.Instance.incScore ();
+				solved.Play ();
 				scoreChanged = true;
 			}
 		}
@@ -77,10 +80,13 @@ public class CompletionCheck : MonoBehaviour {
 	void openDoor(){
 		doorOne.transform.position = doorOneOpenPosition;
 		doorOpened = true;
+		raiseDoor.Play ();
 	}
 
 	void closeDoor(){
 		doorOne.transform.position = doorOneStartingPosition;
+		raiseDoor.Play ();
+		raiseDoor.loop = false;
 	}
 		
 
