@@ -204,8 +204,8 @@ public class GlobalController : MonoBehaviour {
 	public void resetWhenSceneChanged(){
 		thePlayer = FindObjectOfType<PlayerMovement> ();
 		mainCam = GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<Camera>();
-		scoreText = GameObject.FindGameObjectWithTag ("ScoreText").GetComponent<Text>();
-		scientistText = GameObject.FindGameObjectWithTag ("ScientistText").GetComponent<Text>();
+//		scoreText = GameObject.FindGameObjectWithTag ("ScoreText").GetComponent<Text>();
+//		scientistText = GameObject.FindGameObjectWithTag ("ScientistText").GetComponent<Text>();
 		wordDisplay = GameObject.FindGameObjectWithTag ("JITDisplay").GetComponent<Text>();
 
 		//display that text
