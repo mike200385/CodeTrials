@@ -16,7 +16,6 @@ public class LogicalOrCompletion : MonoBehaviour {
 	public GameObject rightPylonClosed;
 	public GameObject leftPylonRaised;
 	public GameObject rightPylonRaised;
-	public GameObject doorOne;
 
 	public AudioSource solved, raisePillarSound, raiseDoor;
 
@@ -27,7 +26,6 @@ public class LogicalOrCompletion : MonoBehaviour {
 	private float offScreenY = -100f;
 
 	//Door Starting and Ending Locations
-	private Vector3 doorOneStartingPosition, doorOneOpenPosition;
 
 	// Use this for initialization
 	void Start () {
@@ -38,10 +36,6 @@ public class LogicalOrCompletion : MonoBehaviour {
 		rightPylonFlag = false;
 		scoreChanged = false;
 
-		doorOpened = false;
-		doorOneStartingPosition = doorOne.transform.position; //The starting position of the door in the scene
-		doorOneOpenPosition = new Vector3 (doorOne.transform.position.x, doorOne.transform.position.y + 11.0f, 
-			doorOne.transform.position.z);
 	}
 
 	// Update is called once per frame
@@ -60,19 +54,17 @@ public class LogicalOrCompletion : MonoBehaviour {
 
 		if (orSuccess.success && replacementOr.giveName == "ReplacementOR") {
 			if (leftPylonFlag || rightPylonFlag && !doorOpened && trueSuccess.success && falseSuccess.success) {
-				openDoor ();
 
 				puzzleFinished = true;
 				if (!camToggled) {
 					GlobalController.Instance.toggleCamera ();
 					camToggled = true;
-					raiseDoor.Play ();
-					raiseDoor.loop = false;
+
 				}
 				//add to score
 				if (!scoreChanged) {
 					GlobalController.Instance.incScore ();
-					solved.Play ();
+					GlobalController.Instance.logicalOrComplete = true;
 					scoreChanged = true;
 				}
 			}
@@ -81,8 +73,6 @@ public class LogicalOrCompletion : MonoBehaviour {
 
 		if (Input.GetKeyDown (KeyCode.R) && GlobalController.Instance.camName == "LogicalOrCamera") {
 			GlobalController.Instance.logicalOrComplete = false;
-			closeDoor ();
-			doorOpened = false;
 			resetPylon ();
 			resetTiles ();
 			resetSlots ();
@@ -114,17 +104,7 @@ public class LogicalOrCompletion : MonoBehaviour {
 			raisePillarSound.loop = false;
 		}
 	}
-
-	void openDoor(){
-		doorOne.transform.position = doorOneOpenPosition;
-		doorOpened = true;
-	}
-
-	void closeDoor(){
-		doorOne.transform.position = doorOneStartingPosition;
-		raiseDoor.Play ();
-		raiseDoor.loop = false;
-	}
+		
 
 	public void resetPylon (){
 		leftPylonRaised.transform.position = new Vector3 (leftX, offScreenY, 0);
