@@ -25,7 +25,7 @@ public class JITScript : MonoBehaviour {
 			switch (this.jitName) {
 
 			case "ArrayBriefing":
-				wordDisplay.text = "There are more scientists to be saved using Arrays! \n" +
+				wordDisplay.text = "This trial room deals with Arrays! \n" +
 				"An array is a list of elements of the same type. \n " +
 				"Arrays count their elements starting at 0! Remember that! " +
 				"Arrays can be accessed like this: array[num] Where num is a number.";
@@ -34,18 +34,16 @@ public class JITScript : MonoBehaviour {
 				playDialogue ();
 				break;
 			case "ArrayChallenge1":
-				wordDisplay.text = "It seems some of the holo-platforms are disabled, which means you can't get across!" +
-					"\nUse this terminal to try and fix them. Turn on the First, Third, and Last platforms." +
-					" Watch out for weird array indexes";
+				wordDisplay.text = "There are 5 elements in this array.\n\n" +
+					"Access the First, Third, and Last spots in the array to complete this challenge." +
+					"Watch out for weird array indexes";
 				Time.timeScale = 0.0f;
 				Destroy (this.gameObject);
 				playDialogue ();
 				break;
 			case "ArrayChallenge2":
-				wordDisplay.text = "The counter-weight platform is down, but you need to get across. " +
-					"Hmm, see those weighted boxed up there, they seem linked ot this terminal! " +
-					"It seems that you need a weight of 14 to align the counter-weight platform. " +
-					"Put your coding skills to the test and drop a total of 14lbs on the platform.";
+				wordDisplay.text = "This challenge is about adding using an array." +
+					"Put your coding skills to the test and make the sum equal 14.";
 				Time.timeScale = 0.0f;
 				Destroy (this.gameObject);
 				break;
@@ -206,13 +204,7 @@ public class JITScript : MonoBehaviour {
 				Destroy (this.gameObject);
 				playDialogue ();
 				break;
-			//Specifically for managing cams in Arrya level since there are many cameras
-			case "ArrayCams":
-				GameObject cam = GameObject.Find ("ErrorCamera");
-				GameObject cam2 = GameObject.Find ("SecondCamera");
-				cam2.GetComponent<Camera> ().enabled = false;
-				cam.GetComponent<Camera> ().enabled = false;
-				break;
+			
 
 			//FINAL LEVEL JITS
 			case "FinalBriefing":

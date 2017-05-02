@@ -32,33 +32,23 @@ public class ArrayAccessCompletion : MonoBehaviour {
 			//activate the platforms
 			if (!camToggled) {
 				if (errorValueUsed ()) {
-					puzzleCam.enabled = false; // disable puzzle cam
-					errorCam.enabled = true; //show blue screen of death
-					camToggled = true;
 					puzzleFinished = true;
 					errorValUsed = true;
 				}
 				else {
 					GlobalController.Instance.toggleCamera ();
 					camToggled = true;
-					makePlatformsVisible ();
 					puzzleFinished = true;
-					//add to score
-					if (!scoreChanged) {
-						GlobalController.Instance.incScore ();
-						scoreChanged = true;
-					}
 
 				}
 			} 
 		}
 		//reset puzzle and platforms
-		if (puzzleFinished && Input.GetKeyDown(KeyCode.R)) {
+		if (Input.GetKeyDown(KeyCode.R)) {
 			//GlobalController.Instance.resetBoxBools();
 			resetTiles ();
 			resetSlots ();
 			resetActive ();
-			resetPlatforms ();
 			resetCheckValues ();
 			//puzzleCam.enabled = true;
 			camToggled = false;
@@ -73,9 +63,7 @@ public class ArrayAccessCompletion : MonoBehaviour {
 
 	}
 
-	public void switchToErrorScreen(){
 
-	}
 
 	public bool errorValueUsed(){
 		//checks to see if the N array tile was placed, which will cause an out of bounds error
@@ -95,18 +83,6 @@ public class ArrayAccessCompletion : MonoBehaviour {
 		checkThree.resetSuccessBool ();
 	}
 
-	public void makePlatformsVisible(){
-		foreach (GameObject temp in arrayTiles) {
-			// if this tile was used as part of the sum
-			if (temp.GetComponent<ArrayTileController> ().isUsed) { 
-				//drop it's corresponding box
-				temp.GetComponent<ArrayTileController>().connectedPlatform.SetVisibleAndActive();
-				temp.GetComponent<ArrayTileController> ().resetUsed ();
-			}
-
-		}
-		//resetCheckValues ();
-	}
 	//reset slots to empty
 	public void resetSlots(){
 		replacementTiles = GameObject.FindGameObjectsWithTag ("ReplaceTile");
@@ -143,14 +119,6 @@ public class ArrayAccessCompletion : MonoBehaviour {
 		}
 	}
 
-	public void resetPlatforms(){
-		//set all platforms back to original state of being inactive
-		foreach (GameObject temp in arrayTiles) {
-			if (temp.GetComponent<ArrayTileController> ().connectedPlatform != null) {
-				temp.GetComponent<ArrayTileController> ().connectedPlatform.SetInvisibleAndInactive ();
-			}
-		}
-	}
 
 
 }
